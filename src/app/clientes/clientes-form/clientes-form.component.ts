@@ -9,14 +9,22 @@ import { Cliente } from '../cliente';
 })
 export class ClientesFormComponent implements OnInit {
 
-  cliente: Cliente;
+  cliente!: Cliente;
 
   constructor( private clienteService : ClientesService) {
     this.cliente = new Cliente();
   }
 
   ngOnInit(): void {
-    this.cliente = this.clienteService.getCliente();
+    //this.cliente = this.clienteService.getCliente();
+  }
+
+  onSubmit(){
+    this.clienteService
+    .salvar(this.cliente)
+    .subscribe (response => {
+      console.log(response);
+    });
   }
 
 }
