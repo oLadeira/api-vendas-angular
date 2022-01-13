@@ -10,11 +10,11 @@ export class ClientesService {
 
   constructor(private http:HttpClient) { }
 
-  getCliente(){
-
-  }
-
   salvar( cliente:Cliente ):Observable<Cliente>{
     return this.http.post<Cliente>('http://localhost:8080/api/cliente', cliente);
+  }
+
+  getClientes():Observable<Cliente[]>{
+    return this.http.get<Cliente[]>('http://localhost:8080/api/cliente');
   }
 }
