@@ -25,11 +25,48 @@
                       <td>{{cliente.cpf}}</td>
                       <td>{{cliente.dataCadastro}}</td>
                       <td><button class="btn btn-primary" routerLink="/clientes-form/{{cliente.id}}" ><i class="fa fa-edit"></i> Editar</button></td>
-                      <td><button class="btn btn-danger"><i class="fa fa-times-circle"></i> Excluir</button></td>
+                      <td><button class="btn btn-danger" (click)="preparaDelecao(cliente)" data-toggle="modal" data-target="#modalDelecao"><i class="fa fa-times-circle"></i> Excluir</button></td>
                   </tr>
               </tbody>
           </table>
       </div>
   </div>
+
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+        </div>
+
+        <div class="modal-body" *ngIf="clienteSelecionadoDelecao">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label >ID</label>
+                <input type="text" class="form-control" disabled placeholder="{{clienteSelecionadoDelecao.id}}">
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="form-group">
+                <label for="">Nome:</label>
+                <input type="text" class="form-control" disabled placeholder="{{clienteSelecionadoDelecao.nome}}">
+              </div>
+            </div>
+          </div>
+
+          <p>Cliente Selecionado: {{clienteSelecionadoDelecao.nome}}</p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-success">Confirmar</button>
+          <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
 
