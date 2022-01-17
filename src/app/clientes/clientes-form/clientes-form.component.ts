@@ -32,7 +32,18 @@ export class ClientesFormComponent implements OnInit {
   }
 
   onSubmit(){
-    this.clienteService
+    if (this.id){
+      this.clienteService
+      .atualizar(this.cliente)
+      .subscribe(() => {
+        this.success = true;
+        this.errors=[];
+      }, errorResponse => {
+        this.success=false;
+        this.errors = errorResponse.error.errors;
+      })
+    }else{
+      this.clienteService
     .salvar(this.cliente)
     .subscribe (() => {
       this.success = true;
@@ -41,6 +52,7 @@ export class ClientesFormComponent implements OnInit {
       this.success = false;
       this.errors = errorResponse.error.errors;
     });
+    }
   }
 
   voltarParaListagem(){
