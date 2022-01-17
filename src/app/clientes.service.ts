@@ -18,6 +18,10 @@ export class ClientesService {
     return this.http.put<Cliente>(`http://localhost:8080/api/cliente/${cliente.id}`, cliente);
   }
 
+  deletar(cliente:Cliente){
+    return this.http.delete<any>(`http://localhost:8080/api/cliente/${cliente.id}`)
+  }
+
   getClientes():Observable<Cliente[]>{
     return this.http.get<Cliente[]>('http://localhost:8080/api/cliente');
   }

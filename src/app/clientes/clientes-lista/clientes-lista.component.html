@@ -2,6 +2,19 @@
 <ol class="breadcrumb mb-4">
   <li li class="breadcrumb-item active">Consulta</li>
 </ol>
+
+<!--Mensagem sucesso/erro deletar Cliente-->
+<div class="col-md-12">
+  <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+    {{mensagemSucesso}}
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+    {{mensagemErro}}
+  </div>
+<!------------------------------------------>
+
+</div>
 <div class="card mb-4">
   <div class="card-header"><i class="fas fa-table mr-1"></i>Clientes Cadastrados</div>
   <div class="card-body">
@@ -25,13 +38,14 @@
                       <td>{{cliente.cpf}}</td>
                       <td>{{cliente.dataCadastro}}</td>
                       <td><button class="btn btn-primary" routerLink="/clientes-form/{{cliente.id}}" ><i class="fa fa-edit"></i> Editar</button></td>
-                      <td><button class="btn btn-danger" (click)="preparaDelecao(cliente)" data-toggle="modal" data-target="#modalDelecao"><i class="fa fa-times-circle"></i> Excluir</button></td>
+                      <td><button class="btn btn-danger" (click)="preparaDelecao(cliente)" data-toggle="modal" data-target="#modalDelecao"><i class="fa fa-trash"></i> Excluir</button></td>
                   </tr>
               </tbody>
           </table>
       </div>
   </div>
 
+  <!--Modal deleção de Cliente-->
   <div id="modalDelecao" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -60,13 +74,13 @@
         </div>
 
         <div class="modal-footer">
-          <button class="btn btn-success">Confirmar</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="deletar()">Confirmar</button>
           <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
         </div>
-
       </div>
     </div>
   </div>
+<!------------------------------------>
 
 </div>
 

@@ -12,6 +12,8 @@ export class ClientesListaComponent implements OnInit {
 
   clientes:Cliente[] = [];
   clienteSelecionadoDelecao!: Cliente;
+  mensagemSucesso!:string;
+  mensagemErro!:string;
 
   constructor(private clienteService:ClientesService, private router: Router) { }
 
@@ -28,5 +30,16 @@ export class ClientesListaComponent implements OnInit {
 
   preparaDelecao(cliente:Cliente){
     this.clienteSelecionadoDelecao = cliente;
+  }
+
+  deletar(){
+    this.clienteService.deletar(this.clienteSelecionadoDelecao)
+    .subscribe(response => {
+      this.mensagemSucesso = "Cliente deletado com sucesso!"
+      this.ngOnInit(); //para atualizar a tabela apos deletar cliente
+    }, error => {
+      this.mensagemErro = "Erro ao tentar deletar Cliente!"
+    }
+    );
   }
 }
