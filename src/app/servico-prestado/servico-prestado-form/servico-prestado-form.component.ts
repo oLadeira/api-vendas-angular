@@ -1,3 +1,5 @@
+import { ServicoPrestadoService } from './../../servico-prestado.service';
+import { ServicoPrestado } from './../servicoPrestado';
 import { ClientesService } from './../../clientes.service';
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/clientes/cliente';
@@ -10,8 +12,12 @@ import { Cliente } from 'src/app/clientes/cliente';
 export class ServicoPrestadoFormComponent implements OnInit {
 
   clientes:Cliente[] = [];
+  servicoPrestado!: ServicoPrestado;
 
-  constructor(private clienteService: ClientesService) { }
+
+  constructor(private clienteService: ClientesService, private servicoPrestadoService: ServicoPrestadoService) {
+    this.servicoPrestado = new ServicoPrestado();
+  }
 
   ngOnInit(): void {
     this.clienteService.getClientes().subscribe(clientes => {
@@ -20,7 +26,11 @@ export class ServicoPrestadoFormComponent implements OnInit {
   }
 
   onSubmit(){
-
+    this.servicoPrestadoService.salvar(this.servicoPrestado)
+    .subscribe(response => {
+      console.log(response)
+    });
+    console.log(this.servicoPrestado)
   }
 
 }
