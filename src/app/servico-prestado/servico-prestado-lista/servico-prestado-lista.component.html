@@ -1,1 +1,31 @@
-<p>servico-prestado-lista works!</p>
+<h1 class="mt-4">Controle de Serviços Prestados</h1>
+<ol class="breadcrumb mb-4">
+  <li li class="breadcrumb-item active">Consulta</li>
+</ol>
+
+<form #form="ngForm" (submit)="consultar()">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="inputNome">Nome do Cliente:</label>
+        <input type="text" name="nome" id="inputNome" class="form-control" [(ngModel)]="nome">
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="inputMes">Mês:</label>
+        <select class="form-control" name="mes" id="inputMes" [(ngModel)]="mes">
+          <option value="" >Selecione...</option>
+          <option *ngFor="let mes of meses" [value]="mes"> {{mes}} </option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Pesquisar</button>
+
+</form>
