@@ -23,7 +23,7 @@ export class ServicoPrestadoService {
     .set("nome", nome)
     .set("mes", mes.toString());
 
-    const url = this.apiURL + 'servico-prestado-listagem/' + '?' + httpParams.toString();
+    const url = this.apiURL + '/api/servicos-prestados' + '?' + httpParams.toString();
     //api/servicos-prestados?nome=Maria&mes=1
     return this.http.get<any>(url);
   }
