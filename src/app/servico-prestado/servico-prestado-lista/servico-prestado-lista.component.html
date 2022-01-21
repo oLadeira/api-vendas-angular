@@ -27,5 +27,33 @@
   </div>
 
   <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Pesquisar</button>
-
+  <button type="button" class="btn btn-warning" routerLink="/servico-prestado-form"><i class="fa fa-plus"></i>Novo Serviço</button>
 </form>
+
+  <div class="alert alert-warning" role='alert' *ngIf="serviceNotFound==true">
+    Nenhum Serviço encontrado!
+  </div>
+
+  <div class="table-responsive" *ngIf="lista">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let servicoPrestado of lista">
+          <td>{{ servicoPrestado.cliente.nome }}</td>
+          <td>{{ servicoPrestado.descricao }}</td>
+          <td>R$ {{ servicoPrestado.valor }}</td>
+          <td>{{ servicoPrestado.data }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+

@@ -13,6 +13,7 @@ export class ServicoPrestadoListaComponent implements OnInit {
   mes!:number;
   meses:number[];
   lista!: ServicoPrestadoBusca[];
+  serviceNotFound!:boolean;
 
   constructor(private servicoPrestadoService:ServicoPrestadoService) {
     this.meses = [1,2,3,4,5,6,7,8,9,10,11,12];
@@ -21,15 +22,16 @@ export class ServicoPrestadoListaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
-
-  }
-
   consultar(){
     this.servicoPrestadoService.buscar(this.nome, this.mes)
     .subscribe(response => {
       this.lista = response;
+      console.log(this.lista);
+      if (this.lista.length <= 0){
+        this.serviceNotFound = true;
+      }else{
+        this.serviceNotFound = false;
+      }
     });
   }
-
 }
