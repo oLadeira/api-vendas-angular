@@ -13,3 +13,5 @@ Projeto usado para fixar meus conhecimentos em desenvolvimento de API's utilizan
 ## Em desenvolvimento
 
 🚧
+
+Desenvolvido com ❤️ por <b>Lucas Ladeira.</b>
