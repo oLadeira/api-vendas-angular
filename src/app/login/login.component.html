@@ -4,12 +4,14 @@
       <div class="row justify-content-center">
         <div class="col-lg-5">
           <div class="card shadow-lg border-0 rounded-lg mt-5">
-            <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+            <div class="card-header">
+              <h3 class="text-center font-weight-light my-4">{{ cadastrando ? 'Cadastro de Usuário' : 'Entrar' }}</h3>
+            </div>
 
             <div class="card-body">
 
               <!--Credenciais incorretas, *ngIf-->
-              <div class="alert alert-danger">Usuário/Senha incorretos.</div>
+              <div class="alert alert-danger" *ngIf="loginError">Usuário/Senha incorretos.</div>
               <!-------------------------->
 
               <form #loginForm="ngForm" (submit)="onSubmit()">
@@ -24,21 +26,31 @@
                   <input id="inputPassword" name="password" [(ngModel)]="password" type="password" class="form-control py-4" placeholder="Insira a senha...">
                 </div>
 
-                <div class="form-group">
+               <!--  <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
                     <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
                   </div>
+                </div> -->
+
+                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" *ngIf="!cadastrando">
+                  <!--<a class="small" href="#">Esqueceu a senha?</a>-->
+                  <button type="submit" class="btn btn-primary">Login</button>
                 </div>
 
-                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                  <a class="small" href="#">Esqueceu a senha?</a>
-                  <button type="submit" class="btn btn-primary">Login</button>
+                <div class="form-group mt-4" *ngIf="cadastrando">
+                  <button type="submit" class="btn btn-success mr-2 mb-0">Cadastrar</button>
+                  <button type="submit" class="btn btn-danger" (click)="cancelaCadastro()">Cancelar</button>
                 </div>
 
               </form>
 
             </div>
+
+            <div class="card-footer text-center">
+              <a href="#" (click)="preparaCadastrar($event)">Não possui cadastro? Clique Aqui!</a>
+            </div>
+
           </div>
         </div>
       </div>
