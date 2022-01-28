@@ -45,12 +45,13 @@ export class LoginComponent implements OnInit {
     usuario.password = this.password;
     this.authService.salvarUsuario(usuario)
     .subscribe (response => {
-      this.mensagemSucesso = 'Usuário cadastrado com sucesso!';
-      this.cadastroError = false;
-      this.errors = null;
+      this.mensagemSucesso = 'Usuário cadastrado com sucesso! Favor efetue o Login!';
+      this.errors = [];
+      this.username = '';
+      this.password = '';
+      this.cadastrando = false;
     }, responseError => {
       this.errors = responseError.error.errors;
-      this.cadastroError = true;
       this.mensagemSucesso = null;
     });
   }
