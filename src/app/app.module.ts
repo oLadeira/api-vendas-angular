@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
 import { ClientesModule } from './clientes/clientes.module';
 import { NgModule } from '@angular/core';
@@ -32,7 +33,8 @@ import { LayoutComponent } from './layout/layout.component';
   ],
   providers: [
     ClientesService,
-    ServicoPrestadoService
+    ServicoPrestadoService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -12,6 +12,9 @@
 
               <!--Credenciais incorretas, *ngIf-->
               <div class="alert alert-danger" *ngIf="loginError">Usuário/Senha incorretos.</div>
+
+              <div class="alert alert-danger" *ngIf="mensagemSucesso">{{ mensagemSucesso }}</div>
+              <div class="alert alert-danger" *ngIf="cadastroError">Erro ao cadastrar Usuário!.</div>
               <!-------------------------->
 
               <form #loginForm="ngForm" (submit)="onSubmit()">
@@ -39,7 +42,7 @@
                 </div>
 
                 <div class="form-group mt-4" *ngIf="cadastrando">
-                  <button type="submit" class="btn btn-success mr-2 mb-0">Cadastrar</button>
+                  <button (click)="salvarUsuario()" type="submit" class="btn btn-success mr-2 mb-0">Cadastrar</button>
                   <button type="submit" class="btn btn-danger" (click)="cancelaCadastro()">Cancelar</button>
                 </div>
 
