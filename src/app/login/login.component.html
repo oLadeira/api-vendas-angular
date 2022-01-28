@@ -13,8 +13,8 @@
               <!--Credenciais incorretas, *ngIf-->
               <div class="alert alert-danger" *ngIf="loginError">Usuário/Senha incorretos.</div>
 
-              <div class="alert alert-danger" *ngIf="mensagemSucesso">{{ mensagemSucesso }}</div>
-              <div class="alert alert-danger" *ngIf="cadastroError">Erro ao cadastrar Usuário!.</div>
+              <div class="alert alert-success" *ngIf="mensagemSucesso">{{ mensagemSucesso }}</div>
+              <div class="alert alert-danger" *ngFor="let erro of errors">{{ erro }}</div>
               <!-------------------------->
 
               <form #loginForm="ngForm" (submit)="onSubmit()">

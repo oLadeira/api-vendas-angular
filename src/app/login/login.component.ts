@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   cadastroError: boolean;
   cadastrando: boolean;
   mensagemSucesso:string;
+  errors:String[];
+
   constructor(private router: Router, private authService:AuthService) {
 
   }
@@ -45,7 +47,9 @@ export class LoginComponent implements OnInit {
     .subscribe (response => {
       this.mensagemSucesso = 'Usuário cadastrado com sucesso!';
       this.cadastroError = false;
+      this.errors = null;
     }, responseError => {
+      this.errors = responseError.error.errors;
       this.cadastroError = true;
       this.mensagemSucesso = null;
     });
